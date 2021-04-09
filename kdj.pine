@@ -1,0 +1,30 @@
+//@version=4
+study(title="Stochastic", shorttitle="Stoch", format=format.price, precision=2, resolution="")
+periodK = input(9, title="K", minval=1)
+periodD = input(3, title="D", minval=1)
+smoothK = input(3, title="Smooth", minval=1)
+
+h0 = hline(80, "Upper Band", color=#606060)
+h1 = hline(20, "Lower Band", color=#606060)
+hline(50, "50", color=color.yellow)
+hline(100,"100", linestyle=hline.style_solid,color=color.yellow)
+hline(0,"0",linestyle=hline.style_solid,color=color.yellow)
+
+k = sma(stoch(close, high, low, periodK), smoothK)
+d = sma(k, periodD)
+j = 3*k-2*d
+
+pk = plot(k, title="%K", color=color.orange)
+pd = plot(d, title="%D", color=color.blue)
+pj = plot(j, title="%J", color=color.purple)
+
+ob = 80
+obp = plot(k > ob ? ob : na, "Overbought", display=display.none)
+fill(obp, pk, color=color.red, transp=60)
+
+os = 20
+osp = plot(k < os ? os : na, "Oversold", display=display.none)
+fill(osp, pk, color=color.green, transp=60)
+
+
+fill(h0, h1, color=#9915FF, transp=90, title="Background")

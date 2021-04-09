@@ -1,0 +1,8 @@
+//@version=4
+study(title="Volume", shorttitle="Vol", format=format.volume)
+barColorsOnPrevClose = input(title="Color bars based on previous close", type=input.bool, defval=false)
+palette = barColorsOnPrevClose ? close[1] > close ? color.red : color.teal : open > close ? color.red : color.teal
+
+plot(volume, color = palette, style=plot.style_columns, title="Volume")
+plot(sma(volume,5), color=color.blue, title="MA5")
+plot(sma(volume,10), color=color.orange, title="MA10")

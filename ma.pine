@@ -1,0 +1,7 @@
+//@version=4
+study(title="MA", shorttitle="MA", overlay=true, resolution="")
+plot(sma(close, 5), color=color.blue, title="5", offset=0)
+plot(sma(close, 10), color=color.orange, title="10", offset=0)
+plot(sma(close, 20), color=color.red, title="20", offset=0)
+plot(sma(close, 60), color=#58508D, title="60", offset=0)
+plot(sma(close, 120), color=#003F5C, title="120", offset=0)
